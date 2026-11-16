@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f4efe5">
+  <meta name="description" content="Why Flute Timer exists, how it counts play and rest, and how its on-device microphone analysis protects your privacy.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="About Flute Timer — a quiet helper for the practice room">
+  <meta property="og:description" content="A two-handed instrument deserves a timer that does not ask for a free hand. How Flute Timer works, and what it deliberately does not do.">
+  <meta name="twitter:card" content="summary">
+  <title>About — Flute Timer</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/site.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-brand" href="index.html" aria-label="Flute Timer home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M4.5 22.2 24.8 11.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="25.4" cy="11" r="2.4" fill="currentColor"/>
+            <path d="M8.4 23.2v-3.1M12.4 21.1v-3.1M16.4 19v-3.1M20.4 16.9v-3.1M24.4 14.8v-3.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Flute Timer</span>
+          <span class="brand-sub">play · rest · repeat</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__icon" aria-hidden="true"><span></span><span></span></span>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <a class="site-nav__link" href="index.html">Home</a>
+        <a class="site-nav__link" href="about.html" aria-current="page">About</a>
+        <a class="site-nav__link" href="blog/">Practice notes</a>
+        <a class="btn btn--primary btn--small" href="app/">
+          Open the timer <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="wrap">
+        <div class="page-hero--split">
+          <div>
+            <p class="eyebrow">About Flute Timer</p>
+            <h1 class="display">A quiet helper for the practice room.</h1>
+            <p class="lede">Flute Timer began with a small annoyance: a two-handed instrument and a stopwatch that wanted a free hand. So the timer learned to listen instead.</p>
+          </div>
+
+          <aside class="glance-card" aria-label="Flute Timer at a glance">
+            <span class="glance-card__label">At a glance</span>
+            <dl>
+              <div><dt>What it is</dt><dd>A play/rest stopwatch</dd></div>
+              <div><dt>Runs in</dt><dd>Your web browser</dd></div>
+              <div><dt>Needs</dt><dd>A microphone</dd></div>
+              <div><dt>Records</dt><dd>Nothing</dd></div>
+              <div><dt>Account</dt><dd>None</dd></div>
+              <div><dt>Price</dt><dd>Free</dd></div>
+            </dl>
+            <p class="glance-card__note">Best in a current version of Safari, Chrome, Firefox or Edge. Microphone access needs a secure page, which is why the timer runs over HTTPS or on localhost.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-body">
+      <div class="narrow">
+        <div class="prose">
+          <p>There is a particular moment in a practice session when you finish a phrase, lower the flute, and wonder whether that was two minutes or five. A phone timer could tell you, but it is usually in your pocket, face down, behind a music stand, or in the hand that is holding the instrument.</p>
+
+          <p>Flute Timer is for that moment. It starts counting when sound appears, closes a lap when the sound stops, and keeps a simple record of the whole session. You do not press anything while you play.</p>
+
+          <h2>The free-hand problem</h2>
+          <p>Most practice timers are built like kitchen timers: set them, then leave them alone. That works until the instrument itself occupies both hands. A flutist cannot tap a lap button in the middle of a phrase, and probably should not want to.</p>
+
+          <p>Listening solves the interface problem. The app only needs to know two things: is there sustained sound right now, and has the sound been gone long enough to count as rest? Everything else follows from those two answers.</p>
+
+          <blockquote>A timer should record time, not judge practice.</blockquote>
+
+          <div class="principle-grid">
+            <div class="principle">
+              <span class="principle__num">01</span>
+              <h3>Two hands on the flute</h3>
+              <p>The session runs from sound. No button between notes, no phone to unlock, no second device.</p>
+            </div>
+            <div class="principle">
+              <span class="principle__num">02</span>
+              <h3>Quiet by default</h3>
+              <p>Audio is measured as it arrives and then discarded. There is no recording, no upload, no analytics.</p>
+            </div>
+            <div class="principle">
+              <span class="principle__num">03</span>
+              <h3>Plain numbers</h3>
+              <p>Play, rest, and session time. Laps in order. No scores, streaks, or badges to chase.</p>
+            </div>
+            <div class="principle">
+              <span class="principle__num">04</span>
+              <h3>Made for real rooms</h3>
+              <p>Bedrooms are noisy and flutes are quiet. Calibration and sensitivity controls meet the room where it is.</p>
+            </div>
+          </div>
+
+          <h2>What it counts, and what it doesn't</h2>
+          <p>The app measures loudness, not musicianship. Sound above a movable threshold opens a <strong>play</strong> lap. When the room stays quiet for a moment, that lap closes and a <strong>rest</strong> lap opens. The next sustained note begins another play lap.</p>
+
+          <p>That means it can count you playing long tones, a difficult passage, or a conversation with your teacher. It cannot tell whether the note was in tune, whether the rhythm was honest, or whether your attention wandered. Those are your work, or your teacher's.</p>
+
+          <p>This is a stopwatch with a session log, not a practice coach. The value is not in the number itself; it is in being able to look back and see the shape of the time you spent.</p>
+
+          <h2 id="privacy">Privacy, in plain terms</h2>
+          <p>The microphone stream is read by the browser's Web Audio API, reduced to a live level in decibels, and thrown away. No audio buffer is written to disk. Nothing is sent to a server. There is no account, no sign-in, and no tracking script.</p>
+
+          <p>Your settings — sensitivity, timing, and any room calibration — are kept in your browser's local storage. The current session's laps live only in the open tab. Closing or reloading the page clears the laps, while the settings remain for next time.</p>
+
+          <div class="callout callout--rest">
+            <span class="callout__label">One honest limitation</span>
+            <p>A web page cannot promise that every browser and operating system handles microphone permissions the same way. Flute Timer asks only when you press Start, and it stops reading the microphone when you pause. If you want to inspect the code, it is all plain HTML, CSS, and JavaScript.</p>
+          </div>
+
+          <h2 id="rooms">Made for real rooms</h2>
+          <p>A flute in a carpeted bedroom, a flute in a hall, and a flute beside an open window all sound different to a microphone. The timer gives you three adjustments for that: sensitivity, how long a note must last, and how long silence must last before it becomes rest. A two-second calibration can also learn the room's background level.</p>
+
+          <p>You normally do not need to touch any of them. <a href="blog/how-the-timer-hears-you.html">The note on how the timer hears you</a> explains what each control is doing when the automatic behavior is not quite right.</p>
+
+          <h2 id="faq">Questions, answered</h2>
+          <div class="faq">
+            <details>
+              <summary>Does it record my playing?</summary>
+              <p>No. The app reads live loudness values from the microphone and discards the audio as it goes. Nothing is recorded, saved, uploaded, or sent anywhere.</p>
+            </details>
+            <details>
+              <summary>Do I need an account or an app store?</summary>
+              <p>No. Flute Timer is a static website. Open the timer page, allow the microphone, and start playing. There is nothing to install and nothing to sign into.</p>
+            </details>
+            <details>
+              <summary>Will it work on my phone or tablet?</summary>
+              <p>It should work in a current mobile browser. Microphone access requires a secure page, so use the hosted HTTPS site or open it on localhost from a computer. Put the device within reach of the instrument and give it a moment to calibrate.</p>
+            </details>
+            <details>
+              <summary>Can it tell whether I played the right notes?</summary>
+              <p>No. It measures amplitude, not pitch. It knows that sound is present and sustained; it does not know which note you played or whether it was in tune.</p>
+            </details>
+            <details>
+              <summary>Why did one phrase split into two laps?</summary>
+              <p>The gap in the middle was longer than the "silence before rest" setting. Raise that value in Fine tuning if short thinking pauses should stay inside the same play lap.</p>
+            </details>
+            <details>
+              <summary>Can I use it with another instrument or voice?</summary>
+              <p>Yes. Any sustained sound can open a play lap. Calibrate in the room you use, then adjust sensitivity if the timer is too eager or too sleepy.</p>
+            </details>
+            <details>
+              <summary>What happens if I close the tab?</summary>
+              <p>The current session's laps are cleared, because they only live in the open page. Your settings and room calibration are kept in local storage for the next session.</p>
+            </details>
+            <details>
+              <summary>Why is it free?</summary>
+              <p>Because there is no server to run. The whole site is a handful of static files. That also makes the privacy story simple: there is nowhere for audio to go.</p>
+            </details>
+          </div>
+
+          <div class="about-rule"></div>
+
+          <p>Flute Timer is a small, deliberate tool. It is not a metronome, a tuner, a lesson, or a measure of how much you have improved. It is the clock you would have kept if you had a third hand — and it is happy to be ignored while you play.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="final-cta">
+          <div class="final-cta__bars" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <h2>Try a session.</h2>
+          <p>The timer is ready whenever you are. Allow the microphone, play a note, and watch the first lap open.</p>
+          <div class="actions">
+            <a class="btn btn--primary" href="app/">Open the timer <span class="btn__arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost" href="blog/">Read the practice notes</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          <a class="site-brand" href="index.html" aria-label="Flute Timer home">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M4.5 22.2 24.8 11.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                <circle cx="25.4" cy="11" r="2.4" fill="currentColor"/>
+                <path d="M8.4 23.2v-3.1M12.4 21.1v-3.1M16.4 19v-3.1M20.4 16.9v-3.1M24.4 14.8v-3.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="brand-text">
+              <span class="brand-name">Flute Timer</span>
+              <span class="brand-sub">play · rest · repeat</span>
+            </span>
+          </a>
+          <p>A quiet practice timer for flute players. Built to get out of the way of the music.</p>
+        </div>
+
+        <div class="site-footer__col">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="app/">The timer</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="blog/">Practice notes</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__col">
+          <h2>Notes</h2>
+          <ul>
+            <li><a href="blog/why-rest-is-practice.html">Rest is practice</a></li>
+            <li><a href="blog/how-the-timer-hears-you.html">What it hears</a></li>
+            <li><a href="blog/making-a-practice-log.html">Using the log</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__base">
+        <span>© <span data-year>2026</span> Flute Timer</span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2.4" stroke="currentColor" stroke-width="1.8"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Microphone audio is analyzed on your device and never recorded.
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js" defer></script>
+</body>
+</html>

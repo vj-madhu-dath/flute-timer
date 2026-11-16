@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f4efe5">
+  <meta name="description" content="A plain-language tour of how Flute Timer turns microphone levels into play and rest laps: band-pass filtering, RMS, gates, hysteresis, and calibration.">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Flute Timer actually hears — Flute Timer">
+  <meta property="og:description" content="It is not listening for notes. A plain-language tour of loudness, gates, calibration, and the small delays that keep laps honest.">
+  <meta name="twitter:card" content="summary">
+  <title>What Flute Timer actually hears — Flute Timer</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-brand" href="../index.html" aria-label="Flute Timer home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M4.5 22.2 24.8 11.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="25.4" cy="11" r="2.4" fill="currentColor"/>
+            <path d="M8.4 23.2v-3.1M12.4 21.1v-3.1M16.4 19v-3.1M20.4 16.9v-3.1M24.4 14.8v-3.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Flute Timer</span>
+          <span class="brand-sub">play · rest · repeat</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__icon" aria-hidden="true"><span></span><span></span></span>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <a class="site-nav__link" href="../index.html">Home</a>
+        <a class="site-nav__link" href="../about.html">About</a>
+        <a class="site-nav__link" href="index.html" aria-current="page">Practice notes</a>
+        <a class="btn btn--primary btn--small" href="../app/">
+          Open the timer <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article>
+      <header class="article-header">
+        <div class="article-shell">
+          <p class="eyebrow eyebrow--rest">How it works</p>
+          <h1>What Flute Timer actually hears</h1>
+          <p class="article-standfirst">It does not recognize the flute, the note, or the tune. It listens for one thing: whether the room is loud enough, for long enough.</p>
+          <div class="article-meta">
+            <span>28 October 2026</span>
+            <span>7 min read</span>
+            <span>Flute Timer notes</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="article-shell">
+        <div class="prose">
+          <p>The timer is not doing anything mysterious. It borrows a live tap on the microphone from the browser, reduces the signal to a number, and compares that number with a threshold. Everything else — laps, totals, the colored meter — follows from that small decision, repeated many times a second.</p>
+
+          <p>It helps to know what the number means, especially when the timer seems too eager or too sleepy. This is the plain-language version. None of it requires any audio engineering.</p>
+
+          <h2>A level, not a note</h2>
+          <p>The app does not try to identify pitches or transcribe a melody. It measures loudness. Before measuring, it passes the microphone signal through two gentle filters: a high-pass at 180 Hz and a low-pass at 7 kHz. That trims low rumble — traffic, a desk bump, the building — and some high hiss, while leaving the range where a flute carries most of its energy.</p>
+
+          <p>From there it calculates the root-mean-square of a short window of samples. RMS is a kind of average of how far the waveform moves; it is a reasonable stand-in for perceived loudness. That value is converted to decibels, with 0 dB representing the loudest the digital signal can be. Quiet room tone might sit around −65 dB; a nearby flute can easily be 20 or 30 dB above it.</p>
+
+          <p>The meter on screen shows a smoothed version of this level on a scale from −80 dB to 0 dB. It is deliberately responsive: the smoothing reacts quickly when a note begins and more slowly when it fades, so the display does not flicker like a VU meter on a bad cable.</p>
+
+          <h2>The gate</h2>
+          <p>The threshold is drawn on the meter as a small diamond and labelled “gate.” Sound above the gate counts as playing; sound below it does not. The gate is not a fixed number. It is placed a certain distance above the room's background level, and the Sensitivity control chooses that distance.</p>
+
+          <p>At the low end, the gate sits about 24 dB above the room; at the high end, about 6 dB. The default, “Balanced,” is roughly 14 dB above the measured room tone. A higher setting catches softer flute notes but also catches more of the room. A lower setting is more skeptical of quiet sounds — useful when a radiator, a fan, or a neighbour keeps nudging the level upward.</p>
+
+          <p>There is one more piece of arithmetic: hysteresis. Once the timer decides that sound is present, it keeps that decision until the level falls about 3 dB <em>below</em> the gate. Without that small gap, a level hovering exactly at the threshold would produce a rapid series of play/rest laps. With it, the decision is stable.</p>
+
+          <h2>Two small delays</h2>
+          <p>Loudness alone would make a terrible timer. A door closes, the level spikes, and a lap begins for a fraction of a second. So two delays stand between the raw level and the session log.</p>
+
+          <ul>
+            <li><strong>Note must last</strong> — by default 0.18 seconds. A sound has to stay above the gate for that long before it can open a play lap. This filters out clicks, coughs, and page turns.</li>
+            <li><strong>Silence before rest</strong> — by default 0.9 seconds. The room has to stay quiet for that long before a play lap closes. Short gaps between notes stay inside the same lap.</li>
+          </ul>
+
+          <p>The lap times are still honest. When the timer finally decides that rest has begun, it backdates the boundary to the last moment sound was heard — not to the moment the 0.9 seconds expired. The same is true when a new note starts: the play lap is credited from the start of the note, not from the end of the 0.18-second confirmation. The delays affect the decision, not the stopwatch.</p>
+
+          <div class="callout callout--rest">
+            <span class="callout__label">Why a phrase sometimes splits</span>
+            <p>If you pause longer than the silence threshold in the middle of a phrase, the timer has no way to know that you were still thinking about the same music. It closes the lap. If that happens often, raise “Silence before rest” under Fine tuning rather than fighting the threshold.</p>
+          </div>
+
+          <h2>How calibration works</h2>
+          <p>“Calibrate room” listens for two quiet seconds and takes a low percentile of the samples, not a simple average. A single cough or chair creak in the middle of the measurement therefore has less influence. The result is clamped to a sensible range, and if the measured level is implausibly loud — say, because you played a note during the measurement — the app keeps the previous room level and says so.</p>
+
+          <p>If you have never calibrated, the first Start does a short 0.9-second background reading while it waits for you to play. A calibration stays fresh for six hours; after that, a new background reading can replace it. You can always run a manual calibration from the Mic setup card.</p>
+
+          <h2>What it never knows</h2>
+          <p>It does not know which note you played, whether it was in tune, whether the rhythm was steady, or whether the phrase sounded beautiful. It does not know whether a silence was a thoughtful pause or a distraction. It only knows level and duration.</p>
+
+          <p>That is a limitation, but also the reason the app can stay small and private. There is no machine-learning model listening for flute-like patterns, no audio uploaded for processing, and no recording kept for later. The microphone stream is read live, reduced to decibels, and discarded.</p>
+
+          <p>When the numbers look wrong, the cause is usually ordinary: a loud room, a quiet flute, a microphone far away, or a backing track coming through speakers. <a href="../about.html#rooms">The settings section of the about page</a> explains the adjustments; the short version is to calibrate in the room you actually use and move the microphone closer before turning sensitivity all the way up.</p>
+
+          <p>The next time the timer opens a lap at what seems like the wrong moment, you can probably trace it back to one of these pieces: a gate placed too low, a note that lasted just long enough, or a silence that crossed the line. Nothing mystical. Just a level, a threshold, and a little patience.</p>
+        </div>
+
+        <footer class="article-foot">
+          <div class="article-foot__rule"></div>
+          <div class="article-foot__note">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 15.5c2.6 0 2.6-7 5.2-7s2.6 7 5.2 7 2.6-7 5.2-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M4 19h16M4 5h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <p><strong>See the gate in action.</strong> Open the timer, press Start, and talk or play a note while watching the Mic level meter. The diamond marks the gate; the number beside “room” is the calibrated floor.</p>
+          </div>
+        </footer>
+
+        <nav class="post-nav" aria-label="More practice notes">
+          <a href="why-rest-is-practice.html">
+            <small>Previous note</small>
+            <strong>Rest is not a break from practice</strong>
+          </a>
+          <a href="making-a-practice-log.html">
+            <small>Next note</small>
+            <strong>Three ways to use a play/rest log</strong>
+          </a>
+        </nav>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          <a class="site-brand" href="../index.html" aria-label="Flute Timer home">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M4.5 22.2 24.8 11.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                <circle cx="25.4" cy="11" r="2.4" fill="currentColor"/>
+                <path d="M8.4 23.2v-3.1M12.4 21.1v-3.1M16.4 19v-3.1M20.4 16.9v-3.1M24.4 14.8v-3.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="brand-text">
+              <span class="brand-name">Flute Timer</span>
+              <span class="brand-sub">play · rest · repeat</span>
+            </span>
+          </a>
+          <p>A quiet practice timer for flute players. Built to get out of the way of the music.</p>
+        </div>
+
+        <div class="site-footer__col">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../app/">The timer</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="index.html">Practice notes</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__col">
+          <h2>Notes</h2>
+          <ul>
+            <li><a href="why-rest-is-practice.html">Rest is practice</a></li>
+            <li><a href="how-the-timer-hears-you.html">What it hears</a></li>
+            <li><a href="making-a-practice-log.html">Using the log</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__base">
+        <span>© <span data-year>2026</span> Flute Timer</span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2.4" stroke="currentColor" stroke-width="1.8"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Microphone audio is analyzed on your device and never recorded.
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js" defer></script>
+</body>
+</html>

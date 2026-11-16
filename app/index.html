@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4efe5">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="A hands-free stopwatch for flute practice that starts when you play and logs your rest. Audio is analyzed on your device and never recorded.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Flute Timer — hands-free practice timer">
+  <meta property="og:description" content="Start once, then play. Flute Timer follows your sound, logs your rest, and keeps both hands on the instrument.">
+  <meta name="twitter:card" content="summary">
+  <title>Flute Timer — hands-free practice timer</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-glow page-glow--warm" aria-hidden="true"></div>
+  <div class="page-glow page-glow--cool" aria-hidden="true"></div>
+
+  <div class="shell">
+    <h1 class="sr-only">Flute Timer — hands-free practice timer</h1>
+
+    <header class="topbar">
+      <a class="brand" href="../index.html" aria-label="Flute Timer home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M4.5 22.2 24.8 11.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="25.4" cy="11" r="2.4" fill="currentColor"/>
+            <path d="M8.4 23.2v-3.1M12.4 21.1v-3.1M16.4 19v-3.1M20.4 16.9v-3.1M24.4 14.8v-3.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Flute Timer</span>
+          <span class="brand-sub">play · rest · repeat</span>
+        </span>
+      </a>
+
+      <div class="status-pill" id="statusPill" data-state="idle" role="status" aria-live="polite">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="statusText">Mic off</span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="timer-card" id="timerCard" data-tone="neutral" aria-labelledby="lapEyebrow">
+        <div class="timer-head">
+          <div class="lap-meta">
+            <span class="eyebrow" id="lapEyebrow">Current lap</span>
+            <span class="lap-index" id="lapIndex">—</span>
+          </div>
+          <span class="phase-pill" id="phasePill" data-tone="neutral">
+            <span class="phase-dot" aria-hidden="true"></span>
+            <span id="phaseText">Not listening</span>
+          </span>
+        </div>
+
+        <div class="time-block">
+          <div class="big-time" id="bigTime" role="timer" aria-live="off" aria-label="Timer, zero">
+            <span id="timeMain">00:00</span><span class="tenths" id="timeTenths">.0</span>
+          </div>
+          <p class="hint" id="hint">Press start, then play your flute. The clock follows the sound and splits your play and rest into laps.</p>
+        </div>
+
+        <div class="meter" id="meterSection">
+          <div class="meter-head">
+            <span class="eyebrow">Mic level</span>
+            <span class="meter-state" id="meterState">Mic off</span>
+          </div>
+          <div class="meter-track is-off" id="meterTrack" aria-hidden="true">
+            <div class="meter-fill" id="meterFill"></div>
+            <div class="threshold-mark" id="thresholdMark" title="Detection threshold">
+              <span class="gate-label" id="gateLabel">gate</span>
+            </div>
+          </div>
+          <div class="meter-foot">
+            <span>−80 dB</span>
+            <span class="meter-cal" id="meterCal">not calibrated</span>
+            <span>0 dB</span>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat stat--play">
+            <span class="stat-label"><i aria-hidden="true"></i>Play</span>
+            <span class="stat-value" id="playTotal">00:00</span>
+          </div>
+          <div class="stat stat--rest">
+            <span class="stat-label"><i aria-hidden="true"></i>Rest</span>
+            <span class="stat-value" id="restTotal">00:00</span>
+          </div>
+          <div class="stat stat--session">
+            <span class="stat-label">Session</span>
+            <span class="stat-value" id="sessionTotal">00:00</span>
+          </div>
+        </div>
+
+        <div class="ratio" aria-hidden="true">
+          <span class="ratio-play" id="ratioPlay"></span>
+          <span class="ratio-rest" id="ratioRest"></span>
+        </div>
+
+        <div class="controls">
+          <button class="button button--primary" id="primaryBtn" type="button">
+            <span class="button-icon" id="primaryIcon" aria-hidden="true"></span>
+            <span id="primaryLabel">Start listening</span>
+          </button>
+          <button class="button button--ghost" id="resetBtn" type="button" disabled>Reset</button>
+        </div>
+      </section>
+
+      <aside class="side">
+        <section class="card laps-card" aria-labelledby="lapsTitle">
+          <div class="card-head">
+            <div>
+              <span class="eyebrow">Session log</span>
+              <h2 id="lapsTitle">Laps</h2>
+            </div>
+            <span class="lap-counts" id="lapCounts">0 play · 0 rest</span>
+          </div>
+          <ol class="lap-list" id="lapList" aria-label="Play and rest laps"></ol>
+          <div class="lap-foot" id="lapFoot">Laps split automatically as you alternate.</div>
+        </section>
+
+        <section class="card settings-card" aria-labelledby="settingsTitle">
+          <div class="card-head card-head--compact">
+            <div>
+              <span class="eyebrow">Calibration</span>
+              <h2 id="settingsTitle">Mic setup</h2>
+            </div>
+            <span class="mic-name" id="micName">Microphone off</span>
+          </div>
+
+          <div class="setting">
+            <div class="setting-row">
+              <label for="sensitivity">Sensitivity</label>
+              <span class="setting-value" id="sensitivityValue">Balanced</span>
+            </div>
+            <input type="range" id="sensitivity" min="0" max="100" step="1" value="55" aria-describedby="sensitivityHelp">
+            <p class="setting-help" id="sensitivityHelp">Higher catches softer flute notes, but may pick up room noise.</p>
+          </div>
+
+          <button class="button button--subtle" id="calibrateBtn" type="button">Calibrate room</button>
+          <p class="calibrate-note" id="calibrateNote">Two quiet seconds tunes the room level.</p>
+
+          <details class="advanced">
+            <summary>Fine tuning</summary>
+            <div class="setting">
+              <div class="setting-row">
+                <label for="restDelay">Silence before rest</label>
+                <span class="setting-value" id="restDelayValue">0.9s</span>
+              </div>
+              <input type="range" id="restDelay" min="0.4" max="2" step="0.1" value="0.9" aria-describedby="restDelayHelp">
+              <p class="setting-help" id="restDelayHelp">Short gaps between notes stay inside the same lap.</p>
+            </div>
+            <div class="setting">
+              <div class="setting-row">
+                <label for="onsetDelay">Note must last</label>
+                <span class="setting-value" id="onsetDelayValue">0.18s</span>
+              </div>
+              <input type="range" id="onsetDelay" min="0.05" max="0.5" step="0.01" value="0.18" aria-describedby="onsetDelayHelp">
+              <p class="setting-help" id="onsetDelayHelp">Filters out short clicks, coughs and chair bumps.</p>
+            </div>
+          </details>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <span><kbd>Space</kbd> start / pause</span>
+      <span class="footer-sep" aria-hidden="true">·</span>
+      <span><kbd>R</kbd> reset</span>
+      <span class="footer-grow"></span>
+      <span class="footer-links">
+        <a href="../index.html">Home</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="../about.html">About</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="../blog/">Practice notes</a>
+      </span>
+      <span>Audio is analyzed on this device and never recorded.</span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="sr-only" id="liveRegion" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

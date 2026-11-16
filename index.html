@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f4efe5">
+  <meta name="description" content="Flute Timer is a hands-free practice timer that starts when you play, logs your rest, and keeps both hands on the flute. Audio is analyzed on your device and never recorded.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Flute Timer — let the flute start the clock">
+  <meta property="og:description" content="A hands-free practice timer for flute players. It follows your sound, splits play and rest into laps, and never records a note.">
+  <meta name="twitter:card" content="summary">
+  <title>Flute Timer — a hands-free timer for flute practice</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/site.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Flute Timer",
+      "applicationCategory": "MusicApplication",
+      "operatingSystem": "Any modern web browser",
+      "description": "A hands-free stopwatch for flute practice that starts when you play and logs your rest.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-brand" href="index.html" aria-label="Flute Timer home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M4.5 22.2 24.8 11.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="25.4" cy="11" r="2.4" fill="currentColor"/>
+            <path d="M8.4 23.2v-3.1M12.4 21.1v-3.1M16.4 19v-3.1M20.4 16.9v-3.1M24.4 14.8v-3.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Flute Timer</span>
+          <span class="brand-sub">play · rest · repeat</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__icon" aria-hidden="true"><span></span><span></span></span>
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <a class="site-nav__link" href="index.html" aria-current="page">Home</a>
+        <a class="site-nav__link" href="about.html">About</a>
+        <a class="site-nav__link" href="blog/">Practice notes</a>
+        <a class="btn btn--primary btn--small" href="app/">
+          Open the timer <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section aria-label="Introduction">
+      <div class="wrap">
+        <div class="hero">
+          <div class="hero__copy">
+            <p class="eyebrow">A hands-free timer for flute practice</p>
+            <h1 class="display">Let the <em>flute</em> start the clock.</h1>
+            <p class="lede">Flute Timer listens while you play, counts every stretch of sound, and logs the silence in between. You keep both hands on the instrument; the session keeps itself.</p>
+            <div class="actions hero__actions">
+              <a class="btn btn--primary" href="app/">Open the timer <span class="btn__arrow" aria-hidden="true">→</span></a>
+              <a class="btn btn--ghost" href="#how-it-works">See how it works</a>
+            </div>
+            <ul class="hero__assurance">
+              <li>No account</li>
+              <li>No recording</li>
+              <li>Works in your browser</li>
+            </ul>
+          </div>
+
+          <div class="hero__visual">
+            <div class="app-frame">
+              <div class="app-frame__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+              <picture>
+                <source type="image/webp" srcset="assets/screenshot-720.webp 720w, assets/screenshot.webp 1440w" sizes="(max-width: 880px) 92vw, 560px">
+                <img src="assets/screenshot-720.png" srcset="assets/screenshot-720.png 720w, assets/screenshot.png 1440w" sizes="(max-width: 880px) 92vw, 560px" width="1440" height="980" alt="Flute Timer running a session, with a play lap, a rest lap, and the microphone level on screen." fetchpriority="high">
+              </picture>
+              <div class="hero__note" aria-hidden="true">
+                <span class="hero__note-dot"></span>
+                <span class="hero__note-text">
+                  <small>Session balance</small>
+                  <strong><span class="play">Play 04:12</span> &nbsp;·&nbsp; <span class="rest">Rest 02:38</span></strong>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="At a glance">
+      <div class="wrap">
+        <div class="trust-strip__inner">
+          <div class="trust-item">
+            <span class="trust-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2.4" stroke="currentColor" stroke-width="1.7"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </span>
+            <div>
+              <strong>Private by design</strong>
+              <span>Audio never leaves your device.</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <span class="trust-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="13" r="7.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 9.5V13l2.4 1.6M9.5 3.5h5M12 3.5v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </span>
+            <div>
+              <strong>Built for two hands</strong>
+              <span>No button to press between notes.</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <span class="trust-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 14.5c2.5 0 2.5-5 5-5s2.5 5 5 5 2.5-5 5-5 2.5 5 3 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity=".35"/><path d="M4 18.5h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </span>
+            <div>
+              <strong>Rest is counted too</strong>
+              <span>Silence becomes its own lap.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="wrap">
+        <div class="how-grid">
+          <div class="how-intro">
+            <p class="eyebrow">How it works</p>
+            <h2 class="section-title">One click. Then you just play.</h2>
+            <p class="section-lede">The timer treats sound and silence as two halves of the same session. Start it once, and the clock follows the music.</p>
+            <div class="sound-bars" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <ol class="steps">
+            <li class="step">
+              <span class="step__num" aria-hidden="true">01</span>
+              <div>
+                <h3>Start listening</h3>
+                <p>One click gives the app your microphone and quietly measures the room. Nothing is recorded, saved, or uploaded.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num" aria-hidden="true">02</span>
+              <div>
+                <h3>Play your flute</h3>
+                <p>Sustained sound opens a play lap. Short clicks and bumps are ignored, so a page turn does not start the clock.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num" aria-hidden="true">03</span>
+              <div>
+                <h3>Rest, then begin again</h3>
+                <p>When the sound stops for a moment, the play lap closes and a rest lap opens. The next note starts a fresh lap.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow eyebrow--rest">What you get</p>
+            <h2 class="section-title">A practice log that fills itself.</h2>
+          </div>
+          <p class="section-lede">A stopwatch is only useful if you remember to touch it. This one is already listening, so the shape of the session is waiting when you stop.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature">
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 7h14M5 12h9M5 17h11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="18.5" cy="12" r="1.6" fill="currentColor"/><circle cx="18.5" cy="17" r="1.6" fill="currentColor" opacity=".45"/></svg>
+            </span>
+            <h3>Laps that split themselves</h3>
+            <p>Every stretch of playing and every gap of rest gets its own line, newest first. No tapping, no notes app, no guessing.</p>
+          </article>
+
+          <article class="feature">
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.7"/><path d="M12 4v8l5.4 3.1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 4a8 8 0 0 1 0 16" stroke="currentColor" stroke-width="7" opacity=".18"/></svg>
+            </span>
+            <h3>A balance you can see</h3>
+            <p>Play and rest totals sit beside the session clock, with a single bar that shows how the two compare at a glance.</p>
+          </article>
+
+          <article class="feature">
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 15.5c2.6 0 2.6-7 5.2-7s2.6 7 5.2 7 2.6-7 5.2-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M4 19h16M4 5h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </span>
+            <h3>Calibrated to your room</h3>
+            <p>Two quiet seconds tune the background level. Sensitivity and timing controls handle soft flutes, noisy rooms, and quick phrases.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="privacy-panel" id="privacy">
+          <div>
+            <p class="eyebrow eyebrow--gold">Privacy</p>
+            <h2>Your microphone is not a recording device.</h2>
+            <p>Flute Timer measures loudness in the moment to decide whether you are playing or resting. The sound itself is discarded as it arrives. There is no account, no upload, and no tracking.</p>
+            <div class="actions">
+              <a class="btn btn--ghost" href="about.html#privacy">Read about privacy</a>
+            </div>
+          </div>
+
+          <ul class="privacy-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 6.9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span><strong>Live levels only.</strong> No audio is recorded or stored.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 6.9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span><strong>Nothing sent away.</strong> The app is a set of static files with no server behind it.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 6.9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span><strong>Your settings stay local.</strong> Preferences live in your browser, not in an account.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">From the practice notes</p>
+            <h2 class="section-title">On playing, pausing, and paying attention.</h2>
+          </div>
+          <p class="section-lede">Short, practical notes about practice-room habits, the timer's little decisions, and what a play/rest log can tell you.</p>
+        </div>
+
+        <div class="post-grid">
+          <a class="post-card" href="blog/why-rest-is-practice.html">
+            <span class="post-card__meta">
+              <span class="post-card__category">Practice</span>
+              <span>12 Nov 2026</span>
+              <span>6 min</span>
+            </span>
+            <h3>Rest is not a break from practice</h3>
+            <p>Why the silence between phrases deserves the same attention as the notes, and how to see your own balance.</p>
+            <span class="post-card__more">Read the note</span>
+          </a>
+
+          <a class="post-card" href="blog/how-the-timer-hears-you.html">
+            <span class="post-card__meta">
+              <span class="post-card__category post-card__category--rest">How it works</span>
+              <span>28 Oct 2026</span>
+              <span>7 min</span>
+            </span>
+            <h3>What Flute Timer actually hears</h3>
+            <p>It is not listening for notes. A plain-language tour of loudness, gates, calibration, and the small delays that keep laps honest.</p>
+            <span class="post-card__more">Read the note</span>
+          </a>
+
+          <a class="post-card" href="blog/making-a-practice-log.html">
+            <span class="post-card__meta">
+              <span class="post-card__category post-card__category--gold">Notebook</span>
+              <span>14 Oct 2026</span>
+              <span>5 min</span>
+            </span>
+            <h3>Three ways to use a play/rest log</h3>
+            <p>For warm-ups, for repeated passages, and for the quiet audit at the end of a week. None of them turn practice into a score.</p>
+            <span class="post-card__more">Read the note</span>
+          </a>
+        </div>
+
+        <div class="blog-foot">
+          <a class="text-link" href="blog/">Read all practice notes <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="final-cta">
+          <div class="final-cta__bars" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <h2>Ready when the first note is.</h2>
+          <p>Open the timer, allow the microphone, and play. The clock will take it from there.</p>
+          <div class="actions">
+            <a class="btn btn--primary" href="app/">Open the timer <span class="btn__arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost" href="about.html">Meet the app</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          <a class="site-brand" href="index.html" aria-label="Flute Timer home">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M4.5 22.2 24.8 11.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                <circle cx="25.4" cy="11" r="2.4" fill="currentColor"/>
+                <path d="M8.4 23.2v-3.1M12.4 21.1v-3.1M16.4 19v-3.1M20.4 16.9v-3.1M24.4 14.8v-3.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="brand-text">
+              <span class="brand-name">Flute Timer</span>
+              <span class="brand-sub">play · rest · repeat</span>
+            </span>
+          </a>
+          <p>A quiet practice timer for flute players. Built to get out of the way of the music.</p>
+        </div>
+
+        <div class="site-footer__col">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="app/">The timer</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="blog/">Practice notes</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__col">
+          <h2>Notes</h2>
+          <ul>
+            <li><a href="blog/why-rest-is-practice.html">Rest is practice</a></li>
+            <li><a href="blog/how-the-timer-hears-you.html">What it hears</a></li>
+            <li><a href="blog/making-a-practice-log.html">Using the log</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__base">
+        <span>© <span data-year>2026</span> Flute Timer</span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2.4" stroke="currentColor" stroke-width="1.8"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          Microphone audio is analyzed on your device and never recorded.
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js" defer></script>
+</body>
+</html>
