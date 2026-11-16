@@ -76,6 +76,7 @@ The workflow copies only the public site files into the deployment artifact: the
 ├── about.html                    About page
 ├── blog/
 │   ├── index.html                Practice notes index
+│   ├── long-tones-and-airy-sound.html
 │   ├── why-rest-is-practice.html
 │   ├── how-the-timer-hears-you.html
 │   └── making-a-practice-log.html

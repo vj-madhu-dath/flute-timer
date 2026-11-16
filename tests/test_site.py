@@ -27,6 +27,7 @@ PAGES = [
     ("/", "home"),
     ("/about.html", "about"),
     ("/blog/", "blog"),
+    ("/blog/long-tones-and-airy-sound.html", "post-airy"),
     ("/blog/why-rest-is-practice.html", "post-rest"),
     ("/blog/how-the-timer-hears-you.html", "post-hearing"),
     ("/blog/making-a-practice-log.html", "post-log"),
@@ -154,7 +155,7 @@ def main():
             page.goto(base + "/", wait_until="networkidle")
             assert page.locator(".post-card").count() == 3, "homepage should preview three notes"
             page.goto(base + "/blog/", wait_until="networkidle")
-            assert page.locator(".post-card").count() == 2, "blog index should list two more notes"
+            assert page.locator(".post-card").count() == 3, "blog index should list three more notes"
             assert page.locator(".featured-post").count() == 1, "blog index needs a featured note"
             page.goto(base + "/app/", wait_until="networkidle")
             assert page.locator("#primaryBtn").is_visible()
@@ -167,6 +168,7 @@ def main():
                 ("/", "home"),
                 ("/about.html", "about"),
                 ("/blog/", "blog"),
+                ("/blog/long-tones-and-airy-sound.html", "post-airy"),
                 ("/blog/why-rest-is-practice.html", "post"),
                 ("/app/", "app"),
             ]:
