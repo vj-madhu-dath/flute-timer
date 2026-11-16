@@ -1,135 +1,145 @@
 # Flute Timer
 
-A hands-free practice timer for flute players. It listens while you play, keeps track of play and rest, and splits your session into laps — without asking for a free hand.
+A practice timer for flute players. It listens while you play and keeps track of your playing and resting — hands free.
 
 ![Flute Timer](assets/screenshot.png)
 
-## The site
+## What this is
 
-Flute Timer is a small static website with four parts:
+Flute Timer is a small program that runs in your web browser. When you start playing, it starts timing. When you stop for a moment, it starts timing your rest. When you play again, it starts a new "play" lap. At the end, you have a simple list showing how long you played and how long you rested.
 
-| Page | Address | What it is |
-| --- | --- | --- |
-| Homepage | `/` | What the timer is and how it works |
-| The timer | `/app/` | The app itself |
-| About | `/about.html` | The idea, the privacy model, and common questions |
-| Practice notes | `/blog/` | Essays on rest, calibration, and using the log |
+You don't press anything while you practice. The sound does the work.
 
-Once published, the site lives at `https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/` and the app at `https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/app/`.
+## Never used GitHub before?
 
-## Using the timer
+You're in the right place. **GitHub** is a website where people share small programs like this one. You don't need an account, and you don't need to know anything about programming.
 
-Open the `/app/` page in a current version of Safari, Chrome, Firefox, or Edge. Press **Start listening**, allow the microphone, and play. The clock starts when the timer hears a sustained note.
+**This download is set up for Mac computers.** If you're on Windows, see [Using a Windows PC](#using-a-windows-pc) near the bottom.
 
-Microphone access requires a secure page. The hosted GitHub Pages site is served over HTTPS, so it works. A local server such as `http://127.0.0.1:8787` also counts as secure. Opening `app/index.html` directly from the file system does not.
+### Step 1 — Download the app
 
-### On a Mac, the short way
+1. Near the top of this page, click the green **Code** button.
+2. In the small menu that appears, click **Download ZIP**.
+3. Open your **Downloads** folder. You'll see a new file named something like `flute-timer-main.zip`. A ZIP file is just a folder packed into one file.
+4. Double-click the ZIP file to unpack it. A new folder appears.
+5. Open that folder. Inside, you should see several files, including one called **`start.command`**.
 
-Double-click **`start.command`**. It starts a local web server and opens the timer at `http://127.0.0.1:8787/app/`. Keep the Terminal window open while you practice.
+**Keep all of the files together in that folder.** The app needs all of them, so don't move just one file somewhere else.
 
-If macOS refuses to open the file the first time, right-click it, choose **Open**, and confirm.
+### Step 2 — Start the app
 
-### Any computer
+1. Double-click **`start.command`**.
+2. A black window opens. This is called Terminal — don't worry, you don't need to type anything in it. Your web browser should open the app a moment later.
+3. Click **Start listening** in the app.
+4. When your browser asks whether the app can use your microphone, click **Allow**.
+5. Play a note on your flute. The timer starts by itself.
 
-From this folder, run:
+> **Did macOS say the file can't be opened?** This is normal the first time. Right-click (or Control-click) `start.command`, choose **Open**, then click **Open** in the window that appears. You only have to do this once.
+
+> **Is the address bar showing something like `localhost:8787`?** That's normal. It means the app is running on your own computer, not on the internet. It's also why the browser is willing to use your microphone.
+
+> **Keep the black Terminal window open while you practice.** Closing it stops the app. When you're finished, click **Pause** in the app, then close the Terminal window.
+
+After you've downloaded the app, you don't need the internet anymore. It works offline.
+
+## What you'll see
+
+- **The big clock** — how long the lap you're in has been going.
+- **Play / Rest / Session** — total time spent playing, resting, and practicing.
+- **The colored bar** — a quick picture of your play-versus-rest balance.
+- **Laps** — every play and rest stretch, newest first.
+- **Mic level** — a moving bar that shows how loud the room is.
+
+## The buttons
+
+| Button | What it does |
+| --- | --- |
+| **Start listening** | Turns on the microphone and gets ready. The timer starts when you play your first note. |
+| **Pause** | Stops listening and freezes the session. |
+| **Resume** | Starts listening again and keeps all your laps. |
+| **Reset** | Clears the session. Click it twice — the first click asks you to confirm. Your settings stay as they are. |
+| **Calibrate room** | Listens to two quiet seconds and adjusts to the background noise in your room. |
+
+## Settings, in plain language
+
+You normally don't need to change anything. If the timer doesn't seem to follow you, these settings can help. The last two are hidden under **Fine tuning**.
+
+- **Sensitivity** — how easily the timer notices your flute. Turn it up if soft notes are missed. Turn it down if the timer keeps starting when you're not playing.
+- **Silence before rest** — how long a pause has to last before the timer decides you're resting. Raise it if one lap keeps splitting into pieces while you play short notes.
+- **Note must last** — how long a sound has to last before it counts as playing. Raise it if coughs, chair bumps, or page turns start the timer.
+
+**Before you click Calibrate room:** pause the timer, then stay quiet for the two seconds it's measuring. Do this in the room where you actually practice.
+
+## If something goes wrong
+
+**The browser didn't open.**
+Open Safari, Chrome, or Firefox yourself, and type the address shown in the black window (usually <http://localhost:8787/app/>). The Terminal window must stay open.
+
+**The black window appeared and closed immediately.**
+Your Mac may not have Python 3, which the launcher needs. Go to <https://www.python.org/downloads/>, download the macOS installer, run it, then try `start.command` again.
+
+**The app opens, but it can't hear me.**
+- Allow the microphone if your browser asks.
+- Check your browser's settings or macOS **System Settings → Privacy & Security → Microphone** to make sure your browser is allowed.
+- Close other apps that might be using the microphone, such as a video call.
+- Clap or talk and watch the **Mic level** bar. If it doesn't move, the microphone isn't reaching the app.
+
+**It starts when I'm not playing.**
+Lower **Sensitivity**, raise **Note must last**, or click **Calibrate room** while the room is quiet.
+
+**It thinks I'm resting in the middle of a phrase.**
+Raise **Silence before rest**.
+
+**It misses quiet notes.**
+Raise **Sensitivity**, move the microphone closer, or recalibrate.
+
+**I opened `app/index.html` and it says the microphone needs a local server.**
+Opening the timer file by itself won't work. Use `start.command` instead. Browsers only allow microphone access through a proper local address like `localhost`.
+
+## Tips for best results
+
+- Use the microphone built into your computer, or a plain USB microphone. Some headsets and speakers apply heavy audio processing that can confuse the timer.
+- If you practice with a backing track, use headphones so the app hears your flute and not the speakers.
+- Leave the app open on screen while you practice. It tries to keep your display awake.
+
+## Keyboard shortcuts
+
+- <kbd>Space</kbd> — start, pause, or resume
+- <kbd>R</kbd> — reset (press again to confirm)
+
+## Your privacy
+
+The microphone audio is measured live in your browser and then thrown away. Nothing is recorded, saved, or sent anywhere. There is no account, no sign-in, and no tracking. After the download, the app doesn't use the internet at all.
+
+## Using a Windows PC
+
+The one-click launcher is for Mac. On Windows, the app can still run in a browser, but it needs a small local web server. That means installing Python 3 and running a command in the Command Prompt. If that sounds unfamiliar, the easiest option is to ask someone technical for help. Here are the exact steps for them:
+
+```bash
+cd path\to\flute-timer
+python -m http.server 8787
+```
+
+Then open <http://localhost:8787/app/> in a browser and allow the microphone.
+
+## For the technically curious
+
+Flute Timer is a static web app with no build step and no dependencies. The files for the timer are:
+
+- `app/index.html` — the timer page layout
+- `app/styles.css` — colors, themes, and responsive layout
+- `app/app.js` — microphone listening, play/rest detection, laps, and saved settings
+- `start.command` — starts a local web server and opens the timer
+- `tests/` — automated checks that simulate a flute with a fake microphone
+
+The rest of the folder holds the website around the timer. You don't need it to use the app, but keep it in place so the launcher and links work.
+
+You can also start the server manually on a Mac. Open the Terminal app, type `cd ` (with a space after it), drag the app folder into the Terminal window, press Return, then run:
 
 ```bash
 python3 -m http.server 8787
 ```
 
-Then open <http://127.0.0.1:8787/> for the site or <http://127.0.0.1:8787/app/> for the timer. On Windows, use `python -m http.server 8787`.
+Then open <http://127.0.0.1:8787/app/>.
 
-## Publish to GitHub Pages
-
-Everything is static — no build step, no dependencies, no server. The included workflow at `.github/workflows/pages.yml` publishes the site whenever you push to `main`.
-
-### One-time setup
-
-1. Create a new **public** repository on GitHub. Do not add a README or license; this folder already has what it needs.
-2. In this folder, connect the folder to the new repository:
-
-   ```bash
-   git init -b main
-   git add .
-   git commit -m "Add Flute Timer site"
-   git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
-   git push -u origin main
-   ```
-
-3. In the GitHub repository, go to **Settings → Pages**.
-4. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-5. Open the **Actions** tab and watch the “Deploy site to GitHub Pages” run. When it finishes, the Pages URL appears in the deployment summary and under Settings → Pages.
-
-Every later push to `main` republishes the site. You can also run the workflow manually from the Actions tab.
-
-The workflow copies only the public site files into the deployment artifact: the four page locations plus `assets/`. Tests, the README, and `start.command` stay in the repository but are not part of the published site.
-
-### Why it works on GitHub Pages
-
-- All links are relative, so they work whether the repository is served at a username root or under a project path.
-- `.nojekyll` is included, so no Jekyll processing is needed.
-- The microphone works because GitHub Pages serves the site over HTTPS.
-
-## Project layout
-
-```text
-.
-├── index.html                    Homepage
-├── about.html                    About page
-├── blog/
-│   ├── index.html                Practice notes index
-│   ├── why-rest-is-practice.html
-│   ├── how-the-timer-hears-you.html
-│   └── making-a-practice-log.html
-├── app/
-│   ├── index.html                The timer
-│   ├── app.js                    Microphone detection, laps, settings
-│   └── styles.css                App styles
-├── assets/
-│   ├── site.css                  Shared site styles
-│   ├── site.js                   Mobile navigation and footer year
-│   ├── favicon.svg
-│   ├── apple-touch-icon.png
-│   └── screenshot*.png/webp
-├── tests/
-│   ├── test_e2e.py               Fake-microphone app test
-│   ├── test_site.py              Page and link smoke test
-│   └── fake_mic.js
-├── .github/workflows/pages.yml   GitHub Pages deployment
-├── start.command                 Mac local launcher
-└── README.md
-```
-
-## Tests
-
-The app test simulates a flute with a synthetic microphone and checks that play/rest laps, pause, resume, and reset all behave. It needs [Playwright](https://playwright.dev/python/):
-
-```bash
-python3 -m pip install playwright
-python3 -m playwright install chromium
-python3 tests/test_e2e.py
-```
-
-The site test checks every page and local link at desktop and phone widths:
-
-```bash
-python3 tests/test_site.py
-```
-
-## Privacy
-
-Microphone audio is measured live in the browser and then discarded. Nothing is recorded, saved, or sent anywhere. There is no account, sign-in, analytics, or tracking. Settings and room calibration are kept in the browser's local storage. The current session's laps live only in the open tab.
-
-## Troubleshooting
-
-**The app says it needs a local server.** Open it through `http://localhost`, `http://127.0.0.1`, or the HTTPS GitHub Pages address. Opening the HTML file directly will not give the page microphone access.
-
-**The browser cannot hear the flute.** Allow the microphone for the page, check the operating system's microphone privacy settings, close other apps that may be using the mic, and watch the Mic level meter while you clap or speak.
-
-**The timer starts when I am not playing.** Lower Sensitivity, raise “Note must last,” or run Calibrate room while the room is quiet.
-
-**A phrase keeps splitting into two laps.** Raise “Silence before rest” under Fine tuning.
-
-**The timer misses quiet notes.** Raise Sensitivity, move the microphone closer, or recalibrate in the room where you practice.
-
-**`start.command` closes immediately.** It needs Python 3. Install it from <https://www.python.org/downloads/>, then try again.
+To run the automated checks: `python3 tests/test_e2e.py` (requires Playwright).
