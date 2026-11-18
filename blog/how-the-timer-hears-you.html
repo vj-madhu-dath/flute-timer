@@ -77,6 +77,8 @@
 
           <p>From there it calculates the root-mean-square of a short window of samples. RMS is a kind of average of how far the waveform moves; it is a reasonable stand-in for perceived loudness. That value is converted to decibels, with 0 dB representing the loudest the digital signal can be. Quiet room tone might sit around −65 dB; a nearby flute can easily be 20 or 30 dB above it.</p>
 
+          <p>The browser's <a href="https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode" target="_blank" rel="noopener noreferrer">AnalyserNode reference</a> describes the time-domain data available for this kind of audio analysis. Flute Timer uses that signal to estimate level; it does not identify notes.</p>
+
           <p>The meter on screen shows a smoothed version of this level on a scale from −80 dB to 0 dB. It is deliberately responsive: the smoothing reacts quickly when a note begins and more slowly when it fades, so the display does not flicker like a VU meter on a bad cable.</p>
 
           <h2>The gate</h2>
